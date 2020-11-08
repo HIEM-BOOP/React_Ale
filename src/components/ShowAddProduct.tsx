@@ -8,23 +8,25 @@ class ShowAddProduct extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            onEdit : false
+            onEdit: false
         }
     }
     render() {
         return (
-            <div className = "pr">
+            <div className="pr">
                 <div className="products">
                     <div className="container">
                         <div className="content" id="products">
+                            {/* các item con */}
+                            <div></div>
                             <div className="productCard">
                                 <div className="setting">
-                                    <span className="material-icons" onClick = {(event) => {
+                                    <span className="material-icons" onClick={(event) => {
                                         this.props.onDelete(this.props.sanPham.idProduct)
                                     }}><DeleteIcon style={{ fontSize: 30 }} /></span>
                                 </div>
                                 <img
-                                    src= {this.props.sanPham.imgProduct}
+                                    src={this.props.sanPham.imgProduct}
                                     alt=""
                                 />
                                 <div className="nameProduct">
@@ -37,41 +39,43 @@ class ShowAddProduct extends Component<Props, State> {
                                     </p>
                                 </div>
                                 <div className="button">
-                                    <button className="btn btn-primary" onClick = 
-                                    
-                                    {this.onUpDate}
-                                    
+                                    <button className="btn btn-primary" onClick=
+
+                                        {this.onUpDate}
+
                                     >Chỉnh sửa</button>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
-                </div>;
-                {this.state.onEdit && <PopUpUpdate  turnOff ={this.tatPopUpEdit}></PopUpUpdate>}
+                </div>
+                {this.state.onEdit && <PopUpUpdate turnOff={this.tatPopUpEdit}></PopUpUpdate>}
             </div>
         );
     }
-    onUpDate = () =>{
+    onUpDate = () => {
         this.setState({
-            onEdit : true
+            onEdit: true
         })
         console.log(this.state.onEdit);
-        
+
     }
     tatPopUpEdit = () => {
         this.setState({
-            onEdit : false
+            onEdit: false
         })
         console.log('Mở');
-       
-}
+
+    }
 }
 type Props = {
-    
-    onDelete(id : number) : void;
+
+    onDelete(id: number): void;
     sanPham: Product;
 }
 type State = {
-    onEdit : boolean,
+    onEdit: boolean,
 }
 export default ShowAddProduct;
