@@ -11,9 +11,9 @@ class AddProduct extends Component<{}, State> {
         var data = localStorage.getItem("products");
         var dsdt = JSON.parse(data || "[]");
         this.state = {
-            showPopUpEdit : false,
+            showPopUpEdit: false,
             showPopUp: false,
-            dsSanPham : dsdt,
+            dsSanPham: dsdt,
         }
     }
     render() {
@@ -30,74 +30,90 @@ class AddProduct extends Component<{}, State> {
                         </div>
                     </div>
                 </div>
-                
-               {
-                   this.state.dsSanPham.map((item : any) => {
-                        return (
-                            <ShowAddProduct 
-                             onDelete = {this.onDelete} sanPham = {item}></ShowAddProduct>
+                <div className="pr">
+                    <div className="products">
+                        <div className="container">
+                            <div className="content" id="products">
 
-                        )
-                   })
-               }
-               
+                                {
+                                    this.state.dsSanPham.map((item: any) => {
+                                        return (
+                                            <ShowAddProduct turnOn  = {this.onUpDate}
+                                                onDelete={this.onDelete} sanPham={item}></ShowAddProduct>
 
+                                        )
+                                    })
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 {this.state.showPopUp && <PopUpAddProduct onClose={this.closeModel}></PopUpAddProduct>}
-                
+                {this.state.showPopUpEdit && <PopUpUpdate turnOff  = {this.tatPopUpEdit}  > </PopUpUpdate>}
             </div>
         );
     }
+    // PopUp chỉnh sữa 
+    onUpDate = (id : number) => {
+        this.setState({
+            showPopUpEdit: true
+        })
+        console.log(id);
+        
+        
+        
+       
+
+    }
+    tatPopUpEdit = () => {
+        this.setState({
+            showPopUpEdit: false
+        })
+        
+
+    }
+
+
     tatMoPopUp = () => {
         this.setState({
             showPopUp: true
         })
     }
 
-    tatPopUpEdit = () => {
-        this.setState({
-            showPopUpEdit : false
-        })
-        console.log('Mở');
-        
-    }
-    moPopUpEdit = () => {
-        this.setState({
-            showPopUpEdit : true
-        })
-    }
+ 
+   
     closeModel = () => {
         this.setState({
             showPopUp: false
         })
     }
-    onDelete = (id : number) => {
+    onDelete = (id: number) => {
         var data = localStorage.getItem("products");
         var dsdt = JSON.parse(data || "[]");
         console.log(id);
         let danhSachSPMoi = [] as Product[];
         this.state.dsSanPham.forEach((item) => {
-            if(id != item.idProduct){
+            if (id != item.idProduct) {
                 danhSachSPMoi.push(item);
             }
         })
         this.setState({
-            dsSanPham : danhSachSPMoi
+            dsSanPham: danhSachSPMoi
 
         })
-        var local =  localStorage.setItem('products',JSON.stringify(danhSachSPMoi))
-        
+        var local = localStorage.setItem('products', JSON.stringify(danhSachSPMoi))
+
     }
 
+
+}
+
     
-}
-
-type Props = {
-
-}
 type State = {
-    showPopUpEdit : boolean,
+    showPopUpEdit: boolean,
     showPopUp: boolean,
-    dsSanPham : Product[]
+    dsSanPham: Product[]
 }
 export default AddProduct;
