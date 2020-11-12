@@ -7,18 +7,11 @@ import PopUpUpdate from './PopUpUpdate';
 class ShowAddProduct extends Component<Props, State> {
     constructor(props: any) {
         super(props);
-        this.state = {
-            onEdit: false
-        }
+      
     }
     render() {
         return (
-            <div className="pr">
-                <div className="products">
-                    <div className="container">
-                        <div className="content" id="products">
-                            {/* các item con */}
-                            <div></div>
+           
                             <div className="productCard">
                                 <div className="setting">
                                     <span className="material-icons" onClick={(event) => {
@@ -39,43 +32,28 @@ class ShowAddProduct extends Component<Props, State> {
                                     </p>
                                 </div>
                                 <div className="button">
-                                    <button className="btn btn-primary" onClick=
-
-                                        {this.onUpDate}
+                                    <button className="btn btn-primary" onClick = {(event) => {this.props.turnOn(this.props.sanPham.idProduct)}}
 
                                     >Chỉnh sửa</button>
                                 </div>
+                                
                             </div>
 
 
-                        </div>
-                    </div>
-                </div>
-                {this.state.onEdit && <PopUpUpdate turnOff={this.tatPopUpEdit}></PopUpUpdate>}
-            </div>
+                       
         );
     }
-    onUpDate = () => {
-        this.setState({
-            onEdit: true
-        })
-        console.log(this.state.onEdit);
-
-    }
-    tatPopUpEdit = () => {
-        this.setState({
-            onEdit: false
-        })
-        console.log('Mở');
-
-    }
+  
 }
+
+
 type Props = {
 
     onDelete(id: number): void;
+    turnOn(id : number) : void ; 
     sanPham: Product;
 }
 type State = {
-    onEdit: boolean,
+    
 }
 export default ShowAddProduct;
