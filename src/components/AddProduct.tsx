@@ -61,21 +61,12 @@ class AddProduct extends Component<{}, State> {
             showPopUpEdit: true
         })
         console.log(id);
-        
-        
-        
-       
-
     }
     tatPopUpEdit = () => {
         this.setState({
             showPopUpEdit: false
         })
-        
-
     }
-
-
     tatMoPopUp = () => {
         this.setState({
             showPopUp: true
