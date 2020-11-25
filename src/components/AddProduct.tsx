@@ -14,6 +14,7 @@ class AddProduct extends Component<{}, State> {
             showPopUpEdit: false,
             showPopUp: false,
             dsSanPham: dsdt,
+            sanPham: { idProduct: 0, nameProduct: " 7", imgProduct: "pg", beforSale: 0, afterSale: 0 }
         }
     }
     render() {
@@ -38,8 +39,17 @@ class AddProduct extends Component<{}, State> {
                                 {
                                     this.state.dsSanPham.map((item: any) => {
                                         return (
-                                            <ShowAddProduct turnOn  = {this.onUpDate}
-                                                onDelete={this.onDelete} sanPham={item}></ShowAddProduct>
+                                            <ShowAddProduct turnOn={this.onUpDate}
+                                                onDelete={this.onDelete} sanPham={item}
+                                                spOBJ={(event) => {
+                                                    let Mang = {}
+                                                    Mang = event
+                                                    this.setState({ sanPham: event })
+                                                    console.log(this.state.sanPham)
+
+                                                }}
+
+                                            ></ShowAddProduct>
 
                                         )
                                     })
@@ -51,12 +61,12 @@ class AddProduct extends Component<{}, State> {
                 </div>
 
                 {this.state.showPopUp && <PopUpAddProduct onClose={this.closeModel}></PopUpAddProduct>}
-                {this.state.showPopUpEdit && <PopUpUpdate turnOff  = {this.tatPopUpEdit}  > </PopUpUpdate>}
+                {this.state.showPopUpEdit && <PopUpUpdate turnOff={this.tatPopUpEdit}  > </PopUpUpdate>}
             </div>
         );
     }
     // PopUp chỉnh sữa 
-    onUpDate = (id : number) => {
+    onUpDate = (id: number) => {
         this.setState({
             showPopUpEdit: true
         })
@@ -72,9 +82,10 @@ class AddProduct extends Component<{}, State> {
             showPopUp: true
         })
     }
+    // Hàm truyền thông tin Product 
 
- 
-   
+
+
     closeModel = () => {
         this.setState({
             showPopUp: false
@@ -101,10 +112,11 @@ class AddProduct extends Component<{}, State> {
 
 }
 
-    
+
 type State = {
     showPopUpEdit: boolean,
     showPopUp: boolean,
-    dsSanPham: Product[]
+    dsSanPham: Product[],
+    sanPham: {}
 }
 export default AddProduct;

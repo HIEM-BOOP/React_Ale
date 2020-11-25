@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Product } from '../model/Product';
 
 class PopUpUpdate extends Component<Props , State> {
     constructor(props: any) {
@@ -41,6 +42,8 @@ class PopUpUpdate extends Component<Props , State> {
 }
 type Props = {
    turnOff () : void
+//      Props Truyền thông tin Sản PHẨM = { ID ,  hÌNH .....}
+// sanPham: Product;
 
 }
 type State = {

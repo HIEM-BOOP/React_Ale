@@ -1,7 +1,7 @@
 import { stat } from 'fs';
 import React, { Component } from 'react';
 
-class PopUpAddProduct extends Component<Props, State>{
+class   PopUpAddProduct extends Component<Props, State>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -100,6 +100,7 @@ class PopUpAddProduct extends Component<Props, State>{
 
 type Props = {
     onClose(): void;
+    
 }
 type State = {
     nameProduct: string,
